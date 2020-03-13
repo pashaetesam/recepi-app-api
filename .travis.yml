@@ -1,7 +1,13 @@
 language: python
 python:
-  - "3.7"
+  - "3.6"
   # command to install dependencies
+services:
+  - docker
+before_script: pip install docker-compose
+
+script:
+  - docker-compose run app sh -c "python manage.py test && flak8"
 install:
   - pip install -r requirements.txt
 # command to run tests
